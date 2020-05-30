@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">app3</string>
+
+    --intro--
+    <string name="welcome">Bine ai venit  in aplicatia noastra</string>
+    <string name="textPasul1">pentru a introduce date \napasa pe adauga in cos</string>
+    <string name="taitelpasul1">primul pas</string>
+    <string name="taitelPas2">Al doilea pas</string>
+    <string name="textPasul2">Pentru a vedea consumurile deja facute apasa pe consumati</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="appname">Portofel</string>
+</resources>
