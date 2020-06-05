@@ -19,8 +19,8 @@ import db.Database;
 
 public class AdaugaInCos extends Fragment {
 
-    private EditText editNrObreatia,editTipul,editPretul;
-    List<Database> databases= null;
+    private EditText editNrObreatia, editTipul, editPretul;
+    List<Database> databases = null;
     Button btSave;
 
     @Override
@@ -37,16 +37,16 @@ public class AdaugaInCos extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if(editNrObreatia.getText().toString().isEmpty()){
-                    Toast.makeText(getActivity(),"Va rog sa completati numarul de obreatia",Toast.LENGTH_SHORT).show();
+                if (editNrObreatia.getText().toString().isEmpty()) {
+                    Toast.makeText(getActivity(), "Va rog sa completati numarul de obreatia", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(editTipul.getText().toString().isEmpty()){
-                    Toast.makeText(getActivity(),"Va rog sa completati tipul",Toast.LENGTH_SHORT).show();
+                if (editTipul.getText().toString().isEmpty()) {
+                    Toast.makeText(getActivity(), "Va rog sa completati tipul", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(editPretul.getText().toString().isEmpty()){
-                    Toast.makeText(getActivity(),"Va rog sa completati pretul",Toast.LENGTH_SHORT).show();
+                if (editPretul.getText().toString().isEmpty()) {
+                    Toast.makeText(getActivity(), "Va rog sa completati pretul", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -61,30 +61,27 @@ public class AdaugaInCos extends Fragment {
 
                 databases = MainActivity.mydbApp.MyDao().getData();
 
-                for(int i=0;i<databases.size();i++){
-                    if(uid == databases.get(i).getUid()){
+                for (int i = 0; i < databases.size(); i++) {
+                    if (uid == databases.get(i).getUid()) {
 
-                        Toast.makeText(getActivity(),"Adaugati va rog un alt nr de operatii",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Adaugati va rog un alt nr de operatii", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }
 
 
-                    MainActivity.mydbApp.MyDao().addInfo(database);
-                    Toast.makeText(getActivity(),"Consumatile o fost adaugate",Toast.LENGTH_SHORT).show();
+                MainActivity.mydbApp.MyDao().addInfo(database);
+                Toast.makeText(getActivity(), "Consumatile o fost adaugate", Toast.LENGTH_SHORT).show();
 
                 editNrObreatia.setText("");
                 editTipul.setText("");
                 editPretul.setText("");
 
 
-
-
             }
         });
         return view;
     }
-
 
 
 }

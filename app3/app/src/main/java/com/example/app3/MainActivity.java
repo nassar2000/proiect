@@ -18,14 +18,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         fragmentManager = getSupportFragmentManager();
-        mydbApp = Room.databaseBuilder(getApplicationContext(), MydbApp.class,"consumati").allowMainThreadQueries().build();
-        if(findViewById(R.id.frameLayoutHome)!=null)
-        {
-            if(savedInstanceState!=null){
+        mydbApp = Room.databaseBuilder(getApplicationContext(), MydbApp.class, "consumati").allowMainThreadQueries().build();
+        if (findViewById(R.id.frameLayoutHome) != null) {
+            if (savedInstanceState != null) {
                 return;
             }
 
-            fragmentManager.beginTransaction().add(R.id.frameLayoutHome,new Home()).commit();
+            fragmentManager.beginTransaction().add(R.id.frameLayoutHome, new Home()).commit();
 
         }
 

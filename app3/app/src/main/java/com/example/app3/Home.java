@@ -13,7 +13,7 @@ import android.widget.Button;
 
 
 public class Home extends Fragment implements View.OnClickListener {
-    private Button add,viewdata;
+    private Button add, viewdata;
     private AnimationDrawable animationDrawable;
     private ConstraintLayout constraintLayout;
 
@@ -37,7 +37,7 @@ public class Home extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.btadd:
                 MainActivity.fragmentManager.beginTransaction().replace(R.id.frameLayoutHome, new AdaugaInCos())
                         .addToBackStack(null).commit();

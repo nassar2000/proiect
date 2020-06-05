@@ -10,7 +10,7 @@ import androidx.viewpager.widget.PagerAdapter;
 
 public class MyPagerAdapter extends PagerAdapter {
     private LayoutInflater inflater;
-    private int[]layouts;
+    private int[] layouts;
     private Context context;
 
     public MyPagerAdapter(int[] layouts, Context context) {
@@ -25,15 +25,15 @@ public class MyPagerAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return view==object;
+        return view == object;
     }
 
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
 
-        inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = inflater.inflate(layouts[position],container,false);
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View v = inflater.inflate(layouts[position], container, false);
         container.addView(v);
         return v;
 
@@ -41,7 +41,7 @@ public class MyPagerAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        View v = (View)object;
+        View v = (View) object;
         container.removeView(v);
     }
 }

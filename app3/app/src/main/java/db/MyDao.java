@@ -11,19 +11,19 @@ import java.util.List;
 
 
 @Dao
-    public interface MyDao {
-        @Insert
-        public void addInfo(Database info);
+public interface MyDao {
+    @Insert
+    public void addInfo(Database info);
 
-        @Query("select * from consumati")
-        public List<Database> getData();
+    @Query("select * from consumati")
+    public List<Database> getData();
 
-        @Delete
-        public void deleteInfo(Database info);
+    @Delete
+    public void deleteInfo(Database info);
 
-        @Update
-        public void updateInfo(Database info);
+    @Update
+    public void updateInfo(Database info);
 
 
-    }
+}
 

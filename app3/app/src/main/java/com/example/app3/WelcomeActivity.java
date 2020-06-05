@@ -21,8 +21,8 @@ public class WelcomeActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private LinearLayout linearLayout;
-    private TextView[]dotstv;
-    private int[]layouts;
+    private TextView[] dotstv;
+    private int[] layouts;
     private Button btnSkip;
     private Button btnNext;
     private MyPagerAdapter pagerAdapter;
@@ -32,15 +32,15 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        if(isFirstTimeStartApp()){
+        if (isFirstTimeStartApp()) {
 
             StartMainActivity();
             finish();
         }
 
 
-
-        setStatusBarTransparent();
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_welcome);
 
@@ -48,7 +48,6 @@ public class WelcomeActivity extends AppCompatActivity {
         linearLayout = findViewById(R.id.linearLayoutW);
         btnNext = findViewById(R.id.buttonNext);
         btnSkip = findViewById(R.id.buttonSkip);
-
 
 
         btnSkip.setOnClickListener(new View.OnClickListener() {
@@ -64,8 +63,8 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                int currentPage = viewPager.getCurrentItem()+1;
-                if(currentPage < layouts.length) {
+                int currentPage = viewPager.getCurrentItem() + 1;
+                if (currentPage < layouts.length) {
                     //o mutam la urm activitate
                     viewPager.setCurrentItem(currentPage);
                 } else {
@@ -75,8 +74,8 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
 
-        layouts = new int[]{R.layout.la1,R.layout.la2,R.layout.la3};
-        pagerAdapter = new MyPagerAdapter(layouts ,getApplicationContext());
+        layouts = new int[]{R.layout.la1, R.layout.la2, R.layout.la3};
+        pagerAdapter = new MyPagerAdapter(layouts, getApplicationContext());
         viewPager.setAdapter(pagerAdapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -87,11 +86,11 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
 
-                if(position == layouts.length-1){
+                if (position == layouts.length - 1) {
                     //ultima pagina
                     btnNext.setText("START");
                     btnSkip.setVisibility(View.GONE);
-                }else {
+                } else {
                     btnNext.setText("NEXT");
                     btnSkip.setVisibility(View.VISIBLE);
                 }
@@ -122,11 +121,10 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
 
-
-    private void setDotStatus (int page){
+    private void setDotStatus(int page) {
         linearLayout.removeAllViews();
         dotstv = new TextView[layouts.length];
-        for (int i = 0; i<dotstv.length;i++){
+        for (int i = 0; i < dotstv.length; i++) {
             dotstv[i] = new TextView(this);
             dotstv[i].setText(Html.fromHtml("&#8226;"));
             dotstv[i].setTextSize(30);
@@ -135,32 +133,18 @@ public class WelcomeActivity extends AppCompatActivity {
 
         }
 
-        if(dotstv.length>0){
+        if (dotstv.length > 0) {
             dotstv[page].setTextColor(Color.parseColor("#ffffff"));
         }
 
     }
 
-    private void StartMainActivity(){
+    private void StartMainActivity() {
 
         setFirstTimeStartStatus(false);
 
-        startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
+        startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
         finish();
     }
 
-    private void setStatusBarTransparent(){
-
-        if (Build.VERSION.SDK_INT>=21){
-
-            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE|View.SYSTEM_UI_FLAG_FULLSCREEN);
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
-
-
-
-        }
-    }
-
-    }
+}

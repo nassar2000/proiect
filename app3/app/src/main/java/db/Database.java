@@ -6,15 +6,15 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "consumati")
-    public class Database {
-        @PrimaryKey
-        public int uid;
+public class Database {
+    @PrimaryKey
+    public int uid;
 
-        @ColumnInfo(name = "tipu_consumat")
-        public String tipulConsumat;
+    @ColumnInfo(name = "tipu_consumat")
+    public String tipulConsumat;
 
-        @ColumnInfo(name = "Pretul")
-        public String pretul;
+    @ColumnInfo(name = "Pretul")
+    public String pretul;
 
     public int getUid() {
         return uid;
@@ -39,5 +39,7 @@ import androidx.room.PrimaryKey;
     public void setPretul(String pretul) {
         this.pretul = pretul;
     }
+
+
 }
 

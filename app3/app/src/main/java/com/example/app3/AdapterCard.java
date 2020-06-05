@@ -1,17 +1,14 @@
 package com.example.app3;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import db.Database;
@@ -19,8 +16,18 @@ import db.Database;
 public class AdapterCard extends RecyclerView.Adapter<AdapterCard.ViewHolder> {
 
     private List<Database> databases;
+    private OnItemClickListener mListener;
 
 
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+
+        void onDeleteClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
 
 
     public AdapterCard(List<Database> databases) {
@@ -36,9 +43,9 @@ public class AdapterCard extends RecyclerView.Adapter<AdapterCard.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int index) {
-        viewHolder.textView.setText("Numarul operatii: "+databases.get(index).getUid() + " \n" +
-                "Tipul: "+databases.get(index).getTipulConsumat()+"\n"+
-                "Pretul: "+databases.get(index).getPretul());
+        viewHolder.textView.setText("Numarul operatii: " + databases.get(index).getUid() + " \n" +
+                "Tipul: " + databases.get(index).getTipulConsumat() + "\n" +
+                "Pretul: " + databases.get(index).getPretul());
     }
 
     @Override
@@ -46,12 +53,38 @@ public class AdapterCard extends RecyclerView.Adapter<AdapterCard.ViewHolder> {
         return databases.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textView;
+        public ImageView imgDelete;
+
         public ViewHolder(View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.textView1);
+            imgDelete = itemView.findViewById(R.id.deleteicon);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            mListener.onItemClick(position);
+                        }
+                    }
+                }
+            });
 
+            imgDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            mListener.onDeleteClick(position);
+                        }
+                    }
+                }
+            });
         }
+
     }
 }
